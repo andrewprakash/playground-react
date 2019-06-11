@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "lodash": "^4.17.11",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-spring": "^8.0.21",
+    "react-with-gesture": "^4.0.8",
+    "styled-components": "^4.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -15,11 +19,11 @@
     "babel-loader": "^8.0.5",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "react-hot-loader": "^4.6.3",
-    "webpack": "^4.29.0",
-    "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.6.0"
   },
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --hot"

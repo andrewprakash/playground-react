@@ -1,21 +1,53 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom'
-import SAS from './Components/SAS'
+import styled, { css } from 'styled-components';
+import { useGesture } from "react-with-gesture"
 
-let j = document.querySelectorAll('[data-render="SAS-Promo"]')
 
-let data = [
-    {
-        number: 1,
-        layout: 3
-    },
-    {
-        number: 2,
-        layout: 1
+const root = document.querySelector("#root")
+
+const Container = styled.div`
+    width: 40em;
+    margin: auto;
+    overflow: hidden;
+`;
+
+const CarouselContainer = styled.div`
+    display: flex;
+    position: relative;
+    left: ${({ left }) => left}px;
+`;
+
+const Card = styled.div`
+   min-width: calc(33.33% - 55px);
+    padding: 20px;
+    border: 1px solid black;
+    margin-left: 10px;
+    user-select: none;
+    &:hover {
+        cursor: pointer;
     }
-]
+`;
 
-j.forEach((d, i) => {
+const Cart = styled.div``;
 
-    ReactDOM.render(<SAS widgetContext={data[i]} />, d);
-})
+const App = props => {
+    const [left, setleft] = useState(0)
+    const handleMove = useCallback(event => {
+        const { previous, xy, down } = event;
+        if (down) {
+            const diff = xy[0] - previous[0]
+            if (diff > 0) {
+                setleft(preState => preState + diff)
+            } else {
+                setleft(preState => diff + preState)
+            }
+        }
+    }, [left])
+
+    const bind = useGesture({ onAction: handleMove })
+    console.log("the left", left);
+    return <Container {...bind()}><CarouselContainer left={left}><Card>First</Card><Card>Second</Card><Card>Third</Card><Card>Fourth</Card></CarouselContainer></Container>
+}
+
+ReactDOM.render(<App />, root)

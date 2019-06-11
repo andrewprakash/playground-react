@@ -46,7 +46,6 @@ const App = props => {
     }, [left])
 
     const bind = useGesture({ onAction: handleMove })
-    console.log("the left", left);
     return <Container {...bind()}><CarouselContainer left={left}><Card>First</Card><Card>Second</Card><Card>Third</Card><Card>Fourth</Card></CarouselContainer></Container>
 }
 
